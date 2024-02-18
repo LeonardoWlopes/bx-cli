@@ -9,3 +9,5 @@
 - [ ] Aprimorar a qualidade e a clareza dos logs do sistema
 - [ ] Transição para o uso de Módulos JavaScript (JSModules)
 - [ ] Adicionar BiomeJs
+- [ ] Melhorar Readme
+- [ ] Publicar no NPM
