@@ -1,8 +1,5 @@
-import arg from 'arg'
 import chalk from 'chalk'
 import path from 'path'
-import { exec } from 'child_process'
-import util from 'util'
 import fs from 'fs'
 import { args } from '../utils/args'
 

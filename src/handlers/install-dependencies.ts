@@ -1,4 +1,3 @@
-import arg from 'arg'
 import { targetPkg } from '../utils/package'
 import { EArgs } from '../enums/args'
 import { args } from '../utils/args'
@@ -75,7 +74,6 @@ export async function installDependencies() {
 				printDependencies()
 			}
 		}
-	} 
-		console.log(chalk.green('✅ All dependencies are already installed'))
-	
+	}
+	console.log(chalk.green('✅ All dependencies are already installed'))
 }

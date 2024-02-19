@@ -1,11 +1,5 @@
 #!/usr/bin/env node
-import arg from 'arg'
 import chalk from 'chalk'
-import path from 'path'
-import { exec } from 'child_process'
-import util from 'util'
-import fs from 'fs'
-import { pkg } from './utils/package'
 import { draw } from './utils/draw'
 import { installDependencies } from './handlers/install-dependencies'
 import { EArgs } from './enums/args'

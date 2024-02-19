@@ -1,8 +1,6 @@
 {
 	"extends": "@rocketseat/eslint-config/react",
-	"plugins": [
-		"unused-imports"
-	],
+	"plugins": ["unused-imports"],
 	"rules": {
 		"no-use-before-define": "off",
 		"unused-imports/no-unused-imports-ts": 1,

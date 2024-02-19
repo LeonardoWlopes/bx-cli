@@ -1,5 +1,5 @@
-import chalk from "chalk"
-import { pkg } from "./package"
+import chalk from 'chalk'
+import { pkg } from './package'
 
 export const draw = {
 	header: () => {
