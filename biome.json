@@ -4,7 +4,12 @@
 		"enabled": false
 	},
 	"files": {
-		"ignore": ["**/node_modules/**", "**/dist/**", "**/coverage/**", "**/*.js"]
+		"ignore": [
+			"**/node_modules/**",
+			"**/dist/**",
+			"**/coverage/**",
+			"**/*.js"
+		]
 	},
 	"linter": {
 		"enabled": true,
