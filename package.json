@@ -16,5 +16,8 @@
 	"dependencies": {
 		"arg": "^5.0.2",
 		"chalk": "^4.1.2"
+	},
+	"repository": {
+		"url": "https://github.com/LeonardoWlopes/bx-cli"
 	}
 }
