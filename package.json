@@ -1,16 +1,17 @@
 {
-    "name": "bx-cli",
-    "version": "1.0.0",
-    "description": "",
-    "main": "./bin/index.js",
-    "bin": {
-        "bx-cli": "./bin/index.js"
-    },
-    "keywords": [],
-    "author": "",
-    "license": "ISC",
-    "dependencies": {
-        "arg": "^5.0.2",
-        "chalk": "^4.1.2"
-    }
+	"name": "bx-cli",
+	"version": "1.0.0",
+	"description": "A CLI tool used to configure projects for the Buildbox company.",
+	"main": "./bin/index.js",
+	"preferGlobal": true,
+	"bin": {
+		"bx-cli": "./bin/index.js"
+	},
+	"keywords": ["cli", "bx-cli"],
+	"author": "@leonardowlopes",
+	"license": "ISC",
+	"dependencies": {
+		"arg": "^5.0.2",
+		"chalk": "^4.1.2"
+	}
 }
