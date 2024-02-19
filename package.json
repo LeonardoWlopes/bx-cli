@@ -1,23 +1,28 @@
 {
-	"name": "@leonardowlopes/bx-cli",
-	"version": "1.0.1",
-	"description": "A CLI tool used to configure projects for the Buildbox company.",
-	"main": "./bin/index.js",
-	"preferGlobal": true,
-	"bin": {
-		"bx-cli": "./bin/index.js"
-	},
-	"keywords": [
-		"cli",
-		"bx-cli"
-	],
-	"author": "@leonardowlopes",
-	"license": "ISC",
-	"dependencies": {
-		"arg": "^5.0.2",
-		"chalk": "^4.1.2"
-	},
-	"repository": {
-		"url": "https://github.com/LeonardoWlopes/bx-cli"
-	}
+    "name": "@leonardowlopes/bx-cli",
+    "version": "1.0.1",
+    "description": "A CLI tool used to configure projects for the Buildbox company.",
+    "main": "./bin/index.js",
+    "preferGlobal": true,
+    "bin": {
+        "bx-cli": "./bin/index.js"
+    },
+    "keywords": [
+        "cli",
+        "bx-cli"
+    ],
+    "author": "@leonardowlopes",
+    "license": "ISC",
+    "dependencies": {
+        "arg": "^5.0.2",
+        "chalk": "^4.1.2"
+    },
+    "devDependencies": {
+        "@biomejs/biome": "1.5.3",
+        "tsx": "^4.7.1",
+        "typescript": "^5.3.3"
+    },
+    "repository": {
+        "url": "https://github.com/LeonardoWlopes/bx-cli"
+    }
 }

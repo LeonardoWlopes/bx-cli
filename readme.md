@@ -8,7 +8,9 @@
 - [ ] Implementar indicadores de carregamento (loadings) para melhorar a experiência do usuário
 - [ ] Aprimorar a qualidade e a clareza dos logs do sistema
 - [ ] Transição para o uso de Módulos JavaScript (JSModules)
-- [ ] Adicionar BiomeJs
+- [X] Adicionar BiomeJs
 - [ ] Melhorar Readme
-- [ ] Publicar no NPM
+- [X] Publicar no NPM
 - [ ] Adicionar Testes
+- [ ] Melhorar a função ```ts draw.usage()```
+- [ ] comando para Node, React e Next
