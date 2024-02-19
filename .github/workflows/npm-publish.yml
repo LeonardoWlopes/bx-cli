@@ -1,11 +1,12 @@
 name: Publish Package to npm
 
 permissions:
-    id-token: write
+  id-token: write
 
 on:
-  push: 
-    branches:  [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
 
 jobs:
   build:
