@@ -1,5 +1,5 @@
 {
-	"name": "bx-cli",
+	"name": "@leonardowlopes/bx-cli",
 	"version": "1.0.0",
 	"description": "A CLI tool used to configure projects for the Buildbox company.",
 	"main": "./bin/index.js",
@@ -7,7 +7,10 @@
 	"bin": {
 		"bx-cli": "./bin/index.js"
 	},
-	"keywords": ["cli", "bx-cli"],
+	"keywords": [
+		"cli",
+		"bx-cli"
+	],
 	"author": "@leonardowlopes",
 	"license": "ISC",
 	"dependencies": {
