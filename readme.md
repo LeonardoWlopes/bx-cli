@@ -11,3 +11,4 @@
 - [ ] Adicionar BiomeJs
 - [ ] Melhorar Readme
 - [ ] Publicar no NPM
+- [ ] Adicionar Testes
