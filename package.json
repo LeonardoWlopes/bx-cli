@@ -1,6 +1,6 @@
 {
     "name": "@leonardowlopes/bx-cli",
-    "version": "1.0.1",
+    "version": "1.1.0",
     "description": "A CLI tool used to configure projects for the Buildbox company.",
     "main": "./bin/index.js",
     "preferGlobal": true,
@@ -13,13 +13,16 @@
     ],
     "author": "@leonardowlopes",
     "license": "ISC",
+    "scripts": {
+        "build": "tsc"
+    },
     "dependencies": {
         "arg": "^5.0.2",
         "chalk": "^4.1.2"
     },
     "devDependencies": {
         "@biomejs/biome": "1.5.3",
-        "tsx": "^4.7.1",
+        "@types/node": "^20.11.19",
         "typescript": "^5.3.3"
     },
     "repository": {
