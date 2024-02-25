@@ -15,7 +15,8 @@
     "license": "ISC",
     "scripts": {
         "build": "tsc",
-        "lint": "biome check . --apply"
+        "lint": "biome check . --apply",
+        "dev": "tsc -w"
     },
     "dependencies": {
         "arg": "^5.0.2",
