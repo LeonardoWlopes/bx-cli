@@ -1,6 +1,6 @@
 {
     "name": "@leonardowlopes/bx-cli",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "description": "A CLI tool used to configure projects for the Buildbox company.",
     "main": "./bin/index.js",
     "preferGlobal": true,
