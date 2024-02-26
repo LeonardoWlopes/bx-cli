@@ -19,3 +19,4 @@
 - [ ] Adicionar pre-commit
 - [ ] Aceitar parâmetros 
 - [ ] atualizar usage function
+- [ ] Adicionar extensões recomendadas
