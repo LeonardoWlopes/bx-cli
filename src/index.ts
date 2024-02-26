@@ -1,35 +1,38 @@
 #!/usr/bin/env node
 import chalk from 'chalk'
 import { draw } from './utils/draw'
-import { installDependencies } from './handlers/install-dependencies'
-import { EArgs } from './enums/args'
-import { args } from './utils/args'
-import { copyFiles } from './handlers/copy-files'
+import inquirer from 'inquirer'
+import { EFunctions } from './enums/options'
+import { configurationHandler } from './handlers/configuration-handler'
+
+interface IOptions {
+	option: EFunctions
+}
 
 async function bootstrap() {
 	try {
 		draw.header()
 
-		if (args[EArgs.CONFIG]) {
-			await installDependencies()
-			await copyFiles()
+		const { option } = await inquirer.prompt<IOptions>([
+			{
+				type: 'list',
+				name: 'option',
+				message: 'What do you want to do?',
+				choices: [EFunctions.CONFIG],
+			},
+		])
 
-			if (args[EArgs.WITH_BIOME]) {
-				console.log(
-					chalk.yellow('Config with biome is under development'),
-				)
-				process.exit(0)
-			}
-
-			console.log(chalk.green('✅ Default config created'))
+		switch (option) {
+			case EFunctions.CONFIG:
+				configurationHandler()
+				break
 		}
+	} catch (error) {
+		const err = error as Error
 
-		// biome-ignore lint/suspicious/noExplicitAny: <explanation>
-	} catch (error: any) {
-		console.error(
-			chalk.red('Ocorreu um erro:'),
-			chalk.yellow(error?.message),
-		)
+		console.error(chalk.red('Error:'), err.message)
+		draw.usage()
+		process.exit(1)
 	}
 }
 

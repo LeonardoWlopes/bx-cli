@@ -1,40 +1,32 @@
 import chalk from 'chalk'
 import path from 'path'
 import fs from 'fs'
-import { args } from '../utils/args'
+import { EConfigOptions, EStackOptions } from '../enums/options'
+import { Templates } from '../utils/templates'
 
-export async function copyFiles() {
-	if (args['--biome']) {
-		console.log(chalk.yellow('Config with biome is under development'))
-		process.exit(0)
-	}
+export async function copyFiles(option: EConfigOptions, stack: EStackOptions) {
+	const templates = new Templates(stack)
 
-	const source = path.join(__dirname, '..', '..', 'templates')
+	switch (option) {
+		case EConfigOptions.ESLINT: {
+			const prettier = templates.getPrettier()
+			const eslint = templates.getEslint()
 
-	const files = fs.readdirSync(source)
+			fs.writeFileSync(
+				path.join(process.cwd(), '.prettierrc'),
+				JSON.stringify(prettier, null, templates.identSize),
+			)
 
-	const existentFiles = files.filter((file) =>
-		fs.existsSync(path.join(process.cwd(), file)),
-	)
-
-	if (existentFiles.length === files.length) {
-		console.log(chalk.green('✅ Files already exist'))
-		return
-	}
-
-	for (const file of files) {
-		const sourceFile = path.join(source, file)
-		const targetFile = path.join(process.cwd(), file)
-
-		if (fs.existsSync(targetFile)) {
-			continue
+			fs.writeFileSync(
+				path.join(process.cwd(), '.eslintrc.json'),
+				JSON.stringify(eslint, null, templates.identSize),
+			)
 		}
-
-		fs.copyFileSync(sourceFile, targetFile)
-		//console.log(chalk.green(`File ${file} created`))
 	}
 
-	console.log(
-		chalk.green(`✅ ${files.length - existentFiles.length} Files copied`),
-	)
+	const editorConfig = templates.getEditorConfig()
+
+	fs.writeFileSync(path.join(process.cwd(), '.editorconfig'), editorConfig)
+
+	console.log(chalk.green('✅ Config files created'))
 }

@@ -1,79 +1,66 @@
 import { targetPkg } from '../utils/package'
-import { EArgs } from '../enums/args'
-import { args } from '../utils/args'
 import chalk from 'chalk'
-import { draw } from '../utils/draw'
+import { EConfigOptions } from '../enums/options'
 const { exec } = require('child_process')
 
 const util = require('util')
 const fs = require('fs')
 
+const ESLINT_DEPENDENCIES = [
+	'@rocketseat/eslint-config',
+	'@typescript-eslint/eslint-plugin',
+	'@typescript-eslint/parser',
+	'eslint',
+	'eslint-plugin-react-hooks',
+	'eslint-plugin-unused-imports',
+	'prettier',
+	'typescript',
+]
+
 const execAsync = util.promisify(exec)
 
-export async function installDependencies() {
-	if (args[EArgs.WITH_BIOME]) {
-		console.log(chalk.yellow('Config with biome is under development'))
-		process.exit(0)
-	}
+export async function installDependencies(option: EConfigOptions) {
+	switch (option) {
+		case EConfigOptions.ESLINT:
+			{
+				const installedDependencies = new Set(
+					Object.keys(targetPkg.devDependencies || {}),
+				)
 
-	const DEPENDENCIES_TO_CHECK = [
-		'@rocketseat/eslint-config',
-		'@typescript-eslint/eslint-plugin',
-		'@typescript-eslint/parser',
-		'eslint',
-		'eslint-plugin-react-hooks',
-		'eslint-plugin-unused-imports',
-		'prettier',
-		'typescript',
-	]
+				const missingDependencies = ESLINT_DEPENDENCIES.filter(
+					(dep) => !installedDependencies.has(dep),
+				)
 
-	const installedDependencies = new Set(
-		Object.keys(targetPkg.devDependencies || {}),
-	)
+				if (missingDependencies.length > 0) {
+					const commandParam = missingDependencies.join(' ')
 
-	const missingDependencies = DEPENDENCIES_TO_CHECK.filter(
-		(dep) => !installedDependencies.has(dep),
-	)
+					console.log(chalk.yellow('Installing dependencies...'))
 
-	let installingDependenceIndex = -1
+					try {
+						await execAsync(
+							`npm install ${commandParam} --save-dev`,
+						)
+					} catch (error) {
+						throw new Error('Error installing dependencies')
+					}
 
-	function printDependencies() {
-		console.clear()
-		draw.header()
-		console.log('Installing dependencies...\n')
-
-		DEPENDENCIES_TO_CHECK.forEach((dep, index) => {
-			if (installedDependencies.has(dep)) {
-				console.log(`✅ ${chalk.green(dep)}`)
-				return
+					console.log(
+						chalk.green(
+							`✅ ${missingDependencies.length} Dependencies installed`,
+						),
+					)
+				} else {
+					console.log(
+						chalk.green(
+							'✅ All dependencies are already installed',
+						),
+					)
+				}
 			}
 
-			if (index === installingDependenceIndex) {
-				console.log(`${chalk.yellow(dep)} (installing...)`)
-				return
-			}
+			break
 
-			console.log(chalk.red(dep))
-		})
+		default:
+			break
 	}
-
-	if (missingDependencies.length > 0) {
-		for (const dep of missingDependencies) {
-			const depIndex = DEPENDENCIES_TO_CHECK.indexOf(dep)
-
-			installingDependenceIndex = depIndex
-
-			try {
-				printDependencies()
-				await execAsync(`npm install ${dep} --save-dev`)
-				installedDependencies.add(dep)
-			} catch (error) {
-				throw new Error(`Error installing ${dep}`)
-			} finally {
-				installingDependenceIndex = -1
-				printDependencies()
-			}
-		}
-	}
-	console.log(chalk.green('✅ All dependencies are already installed'))
 }
