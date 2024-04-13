@@ -1,7 +1,7 @@
-import { EConfigType } from '@/enum/services'
-import type { IConfigurationRequest } from '@/interfaces/config'
-import { CONFIG_FILE_NAME_MAPPER } from '@/utils/mappers'
 import inquirer from 'inquirer'
+import { EConfigType } from '../enum/services'
+import type { IConfigurationRequest } from '../interfaces/config'
+import { CONFIG_FILE_NAME_MAPPER } from '../utils/mappers'
 
 export async function configurationService() {
 	const { type } = await inquirer.prompt<{
