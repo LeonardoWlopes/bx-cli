@@ -1,36 +1,33 @@
 {
-    "name": "@leonardowlopes/bx-cli",
-    "version": "1.2.0",
-    "description": "A CLI tool used to configure projects for the Buildbox company.",
-    "main": "./bin/index.js",
-    "preferGlobal": true,
-    "bin": {
-        "bx-cli": "./bin/index.js"
-    },
-    "keywords": [
-        "cli",
-        "bx-cli",
-        "buildbox"
-    ],
-    "author": "@leonardowlopes",
-    "license": "ISC",
-    "scripts": {
-        "build": "tsc",
-        "lint": "biome check . --apply",
-        "dev": "tsc -w"
-    },
-    "dependencies": {
-        "arg": "^5.0.2",
-        "chalk": "^4.1.2",
-        "inquirer": "^8.2.6"
-    },
-    "devDependencies": {
-        "@biomejs/biome": "1.5.3",
-        "@types/inquirer": "^9.0.7",
-        "@types/node": "^20.11.19",
-        "typescript": "^5.3.3"
-    },
-    "repository": {
-        "url": "https://github.com/LeonardoWlopes/bx-cli"
-    }
+	"name": "@leonardowlopes/bx-cli",
+	"version": "2.0.0",
+	"description": "A CLI tool used to configure projects for the Buildbox company.",
+	"main": "./bin/index.js",
+	"preferGlobal": true,
+	"bin": {
+		"bx-cli": "./bin/index.js"
+	},
+	"keywords": ["cli", "bx-cli", "buildbox"],
+	"author": "@leonardowlopes",
+	"license": "ISC",
+	"scripts": {
+		"build": "tsc",
+		"lint": "biome check . --apply",
+		"dev": "tsc -w"
+	},
+	"dependencies": {
+		"arg": "^5.0.2",
+		"chalk": "^4.1.2",
+		"inquirer": "^8.2.6"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "1.6.4",
+		"@types/bun": "^1.0.12",
+		"@types/inquirer": "^9.0.7",
+		"@types/node": "^20.11.19",
+		"typescript": "^5.3.3"
+	},
+	"repository": {
+		"url": "https://github.com/LeonardoWlopes/bx-cli"
+	}
 }
