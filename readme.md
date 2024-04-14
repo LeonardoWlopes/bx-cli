@@ -36,7 +36,7 @@ execute a cli pelo terminal usando o comando ```bx-cli```
 ## Autores
 
 <a href='https://github.com/LeonardoWlopes'>
-	<img src='https://github.com/LeonardoWlopes.png' width='90' alt='Leonardo Wlopes'/>
+	<img src='https://github.com/LeonardoWlopes.png' width='90' alt='LeonardoWlopes'/>
 </a>
 
 
