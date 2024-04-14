@@ -1,6 +1,5 @@
 import fs from 'node:fs'
 import path from 'node:path'
-import { ECommandType } from '@/enum/command'
 import type { IDependencies, IPackageJson } from '@/interfaces/package'
 
 class Package {
@@ -53,32 +52,6 @@ class Package {
 	}
 }
 
-class PackageManager {
-	private command: ECommandType
-
-	constructor() {
-		this.command = this.getCommand()
-	}
-
-	private getCommand(): ECommandType {
-		const fileMatch = ['yarn.lock', 'pnpm-lock.yaml', 'package-lock.json']
-		const commands = [
-			ECommandType.YARN,
-			ECommandType.PNPM,
-			ECommandType.NPM,
-		]
-
-		for (let i = 0; i < fileMatch.length; i++) {
-			if (fs.existsSync(path.join('.', fileMatch[i]))) {
-				return commands[i]
-			}
-		}
-
-		return ECommandType.NPM
-	}
-}
-
-const packageManager = new PackageManager()
 const packageHandler = new Package()
 
-export { packageHandler, packageManager }
+export { packageHandler }

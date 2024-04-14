@@ -1,3 +1,5 @@
+import type { ERepositoryFileName } from '@/enum/repository'
+
 export interface IConfigurationRequest {
 	url: string
 	forks_url: string
@@ -7,7 +9,7 @@ export interface IConfigurationRequest {
 	git_pull_url: string
 	git_push_url: string
 	html_url: string
-	files: Record<string, IFile>
+	files: Record<ERepositoryFileName, IFile>
 	public: boolean
 	created_at: string
 	updated_at: string

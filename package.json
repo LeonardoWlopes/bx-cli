@@ -15,10 +15,10 @@
 	"scripts": {
 		"build": "bun build ./src/index.ts --outdir ./bin --target=node",
 		"dev": "bun run build --watch",
-		"lint": "biome check . --apply"
+		"lint": "biome check . --apply",
+		"check": "knip"
 	},
 	"dependencies": {
-		"arg": "^5.0.2",
 		"chalk": "^4.1.2",
 		"inquirer": "^8.2.6",
 		"ora": "^8.0.1"
@@ -28,6 +28,7 @@
 		"@types/bun": "^1.0.12",
 		"@types/inquirer": "^9.0.7",
 		"@types/node": "^20.11.19",
+		"knip": "^5.9.4",
 		"typescript": "^5.3.3"
 	},
 	"repository": {

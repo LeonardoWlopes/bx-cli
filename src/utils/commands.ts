@@ -10,11 +10,17 @@ const execAsync = util.promisify(childExec)
 
 class Command {
 	private async getCommand(): Promise<ECommandType> {
-		const fileMatch = ['yarn.lock', 'pnpm-lock.yaml', 'package-lock.json']
+		const fileMatch = [
+			'yarn.lock',
+			'pnpm-lock.yaml',
+			'package-lock.json',
+			'bun.lockb',
+		]
 		const commands = [
 			ECommandType.YARN,
 			ECommandType.PNPM,
 			ECommandType.NPM,
+			ECommandType.BUN,
 		]
 
 		for (let i = 0; i < fileMatch.length; i++) {
