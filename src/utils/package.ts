@@ -7,9 +7,8 @@ class Package {
 	private targetPkg: IPackageJson
 
 	constructor() {
-		this.pkg = this.loadPackageJson(
-			path.join(__dirname, '../../package.json'),
-		)
+		this.pkg = this.loadPackageJson(path.join(__dirname, '../package.json'))
+
 		this.targetPkg = this.loadPackageJson(
 			path.join(process.cwd(), 'package.json'),
 		)
