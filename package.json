@@ -7,16 +7,13 @@
 	"bin": {
 		"bx-cli": "./bin/index.js"
 	},
-	"keywords": [
-		"cli",
-		"bx-cli",
-		"buildbox"
-	],
+	"keywords": ["cli", "bx-cli", "buildbox", "bun"],
 	"author": "@leonardowlopes",
 	"license": "ISC",
+	"type": "module",
 	"scripts": {
-		"dev": "tsc -w",
-		"build": "tsc",
+		"dev": "bun --watch src/index.ts",
+		"build": "bun build index.ts --outdir ./bin --target=node",
 		"lint": "biome check . --apply"
 	},
 	"dependencies": {
@@ -26,6 +23,7 @@
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.6.4",
+		"@types/bun": "^1.0.12",
 		"@types/inquirer": "^9.0.7",
 		"@types/node": "^20.11.19",
 		"typescript": "^5.3.3"
