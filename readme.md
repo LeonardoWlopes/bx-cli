@@ -28,6 +28,11 @@ execute a cli pelo terminal usando o comando ```bx-cli```
 ## Funcionalidades
 
 - **Setup de configurações gerais para projetos:** Criação de arquivos essenciais, definições de lint e instalação de dependências para projetos."
+
+## Melhorias
+- [ ] implementar versoes diferentes das configuracoes para stacks diferente (Node, React, Next)
+- [ ] adicionar flags na execução da CLI
+
 ## Autores
 
 <a href='https://github.com/LeonardoWlopes'>
