@@ -8,8 +8,7 @@ export async function setupRepositoryFile(fileName: ERepositoryFileName) {
 	const configFile = filesRepository.files?.[fileName]
 
 	if (!configFile) {
-		console.error(`No file found with the name ${fileName}`)
-		return
+		throw new Error(`No file found with the name ${fileName}`)
 	}
 
 	const fileContent = JSON.parse(configFile.content) as IFileContent

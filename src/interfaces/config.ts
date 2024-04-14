@@ -21,7 +21,7 @@ export interface IConfigurationRequest {
 	truncated: boolean
 }
 
-export interface IFile {
+interface IFile {
 	filename: string
 	type: string
 	language: string

@@ -15,7 +15,7 @@ const { option } = await inquirer.prompt<{
 	{
 		type: 'list',
 		name: 'option',
-		message: 'What do you wanna to do?',
+		message: 'What do you wanna do?',
 		choices: Object.values(EServices).map((value) => ({
 			name: SERVICE_LABEL[value],
 			value,

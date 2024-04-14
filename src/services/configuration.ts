@@ -6,7 +6,7 @@ import inquirer from 'inquirer'
 
 export async function configurationService() {
 	const { type, configFiles } = await inquirer.prompt<{
-		type: ERepositoryFileName
+		type: ERepositoryFileName | ERepositoryFileName[]
 		configFiles: ERepositoryFileName[]
 	}>([
 		{
@@ -15,8 +15,15 @@ export async function configurationService() {
 			message: 'What linting tool do you want to use?',
 			choices: [
 				{
-					name: 'Biome',
+					name: 'BiomeJS',
 					value: ERepositoryFileName.BIOME,
+				},
+				{
+					name: 'ESLint/Prettier',
+					value: [
+						ERepositoryFileName.ESLINT,
+						ERepositoryFileName.PRETTIER,
+					],
 				},
 			],
 		},
@@ -33,13 +40,18 @@ export async function configurationService() {
 		},
 	])
 
-	const fileNames = [type, ...configFiles]
+	const fileNames = [...configFiles, ...(Array.isArray(type) ? type : [type])]
 
 	console.log('')
 
 	for (const fileName of fileNames) {
-		await setupRepositoryFile(fileName)
-		console.log(`Successfully setup ${chalk.blue(fileName)}`)
+		try {
+			await setupRepositoryFile(fileName)
+			console.log(`Successfully setup ${chalk.blue(fileName)}`)
+		} catch (error) {
+			const err = error as Error
+			console.error(chalk.red(err.message))
+		}
 	}
 
 	console.log('')
