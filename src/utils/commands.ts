@@ -2,9 +2,8 @@ import { exec as childExec } from 'node:child_process'
 import fs from 'node:fs'
 import path from 'node:path'
 import util from 'node:util'
-import { ECommandType } from '@/enum/command'
 import chalk from 'chalk'
-import ora from 'ora'
+import { ECommandType } from '../enum/command'
 
 const execAsync = util.promisify(childExec)
 
@@ -48,17 +47,14 @@ class Command {
 
 	public async install() {
 		const command = await this.getCommand()
-		const spinner = ora(
-			`installing dependencies using ${chalk.blue(command)} ...`,
-		).start()
+		console.log(`instalando dependências usando ${chalk.blue(command)} ...`)
 
 		try {
 			await this.exec(`${command} install`)
-
-			spinner.succeed('Installation completed successfully')
+			console.log(`Instalação concluída com ${chalk.green('sucesso')}`)
 		} catch (error) {
 			const err = error as Error
-			spinner.fail(`Installation failed with error: ${err.message}`)
+			console.log(`A instalação falhou com erro: ${err.message}`)
 		}
 	}
 

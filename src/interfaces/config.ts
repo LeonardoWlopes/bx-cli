@@ -1,4 +1,4 @@
-import type { ERepositoryFileName } from '@/enum/repository'
+import type { ERepositoryFileName } from '../enum/repository'
 
 export interface IConfigurationRequest {
 	url: string

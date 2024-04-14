@@ -1,10 +1,12 @@
-import type { ERepositoryFileName } from '@/enum/repository'
-import type { IFileContent } from '@/interfaces/config'
-import { createFile } from '@/utils/file'
-import { filesRepository } from '@/utils/http'
-import { packageHandler } from '@/utils/package'
+import type { ERepositoryFileName } from '../enum/repository'
+import type { IFileContent } from '../interfaces/config'
+import { createFile } from '../utils/file'
+import { fetchFilesRepository } from '../utils/http'
+import { packageHandler } from '../utils/package'
 
 export async function setupRepositoryFile(fileName: ERepositoryFileName) {
+	const filesRepository = await fetchFilesRepository()
+
 	const configFile = filesRepository.files?.[fileName]
 
 	if (!configFile) {

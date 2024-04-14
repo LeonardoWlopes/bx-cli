@@ -32,6 +32,8 @@ execute a cli pelo terminal usando o comando ```bx-cli```
 ## Melhorias
 - [ ] implementar versoes diferentes das configuracoes para stacks diferente (Node, React, Next)
 - [ ] adicionar flags na execução da CLI
+- [ ] criar arquivo .nvmrc
+- [ ] adicionar ts paths
 
 ## Autores
 

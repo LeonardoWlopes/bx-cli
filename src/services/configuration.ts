@@ -1,8 +1,8 @@
-import { ERepositoryFileName } from '@/enum/repository'
-import { setupRepositoryFile } from '@/functions/setup-repository-file'
-import { command } from '@/utils/commands'
 import chalk from 'chalk'
 import inquirer from 'inquirer'
+import { ERepositoryFileName } from '../enum/repository'
+import { setupRepositoryFile } from '../functions/setup-repository-file'
+import { command } from '../utils/commands'
 
 export async function configurationService() {
 	const { type, configFiles } = await inquirer.prompt<{
