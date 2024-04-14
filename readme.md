@@ -1,22 +1,44 @@
-# Lista de Tarefas do Projeto
 
-- [ ] Recuperar arquivos do repositório do guia de estilo (styleguide)
-- [ ] Detectar automaticamente se o projeto está utilizando npm ou yarn
-- [X] Permitir a utilização da CLI sem parâmetros, apresentando um menu interativo
-- [X] Dividir responsabilidades do código por arquivos distintos
-- [X] Incorporar o uso de Typescript no projeto
-- [ ] Implementar indicadores de carregamento (loadings) para melhorar a experiência do usuário
-- [ ] Aprimorar a qualidade e a clareza dos logs do sistema
-- [X] Transição para o uso de Módulos JavaScript (JSModules)
-- [ ] Adicionar opção BiomeJs
-- [ ] Melhorar Readme
-- [X] Publicar no NPM
-- [ ] Adicionar Testes
-- [ ] Melhorar a função ```draw.usage()```
-- [ ] comando para Node, React e Next
-- [ ] publicar somente a paste ```bin```
-- [ ] definir idioma
-- [ ] Adicionar pre-commit
-- [ ] Aceitar parâmetros 
-- [ ] atualizar usage function
-- [ ] Adicionar extensões recomendadas
+# BX CLI
+
+Ferramenta de linha de comando dedicada aos desenvolvedores da [Buildbox](https://buildbox.com.br/), projetada para otimizar e simplificar suas tarefas diárias.
+
+## Instalação
+
+Instale `@leonardowlopes/bx-cli` com npm:
+
+```bash
+npm install -g @leonardowlopes/bx-cli
+```
+
+ou com yarn:
+```bash
+yarn global add @leonardowlopes/bx-cli
+```
+
+ou com pnpm:
+```bash
+pnpm add -g @leonardowlopes/bx-cli
+```
+    
+## Uso
+
+execute a cli pelo terminal usando o comando ```bx-cli```
+
+## Funcionalidades
+
+- **Setup de configurações gerais para projetos:** Criação de arquivos essenciais, definições de lint e instalação de dependências para projetos."
+
+## Melhorias
+- [ ] implementar versoes diferentes das configuracoes para stacks diferente (Node, React, Next)
+- [ ] adicionar flags na execução da CLI
+
+## Autores
+
+<a href='https://github.com/LeonardoWlopes'>
+	<img src='https://github.com/LeonardoWlopes.png' width='90' alt='LeonardoWlopes'/>
+</a>
+
+
+
+

@@ -1,39 +1,26 @@
 #!/usr/bin/env node
+import { EServices } from '@/enum/services'
+import { SERVICE_LABEL } from '@/utils/labels'
+import { SERVICE_MAPPER } from '@/utils/mappers'
 import chalk from 'chalk'
-import { draw } from './utils/draw'
 import inquirer from 'inquirer'
-import { EFunctions } from './enums/options'
-import { configurationHandler } from './handlers/configuration-handler'
 
-interface IOptions {
-	option: EFunctions
-}
+console.clear()
 
-async function bootstrap() {
-	try {
-		draw.header()
+console.log(chalk.blue('Hello Builder!\n'))
 
-		const { option } = await inquirer.prompt<IOptions>([
-			{
-				type: 'list',
-				name: 'option',
-				message: 'What do you want to do?',
-				choices: [EFunctions.CONFIG],
-			},
-		])
+const { option } = await inquirer.prompt<{
+	option: EServices
+}>([
+	{
+		type: 'list',
+		name: 'option',
+		message: 'What do you wanna do?',
+		choices: Object.values(EServices).map((value) => ({
+			name: SERVICE_LABEL[value],
+			value,
+		})),
+	},
+])
 
-		switch (option) {
-			case EFunctions.CONFIG:
-				configurationHandler()
-				break
-		}
-	} catch (error) {
-		const err = error as Error
-
-		console.error(chalk.red('Error:'), err.message)
-		draw.usage()
-		process.exit(1)
-	}
-}
-
-bootstrap()
+SERVICE_MAPPER[option]()

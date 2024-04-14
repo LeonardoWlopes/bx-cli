@@ -1,26 +1,57 @@
-import path from 'path'
-import fs from 'fs'
+import fs from 'node:fs'
+import path from 'node:path'
+import type { IDependencies, IPackageJson } from '@/interfaces/package'
 
-let pkg: typeof import('../../package.json')
-let targetPkg: typeof import('../../package.json')
+class Package {
+	private pkg: IPackageJson
+	private targetPkg: IPackageJson
 
-try {
-	const pkgPath = path.join(__dirname, '../../package.json')
-	if (fs.existsSync(pkgPath)) {
-		pkg = require(pkgPath)
-	} else {
-		throw new Error('Arquivo package.json não encontrado')
+	constructor() {
+		this.pkg = this.loadPackageJson(
+			path.join(__dirname, '../../package.json'),
+		)
+		this.targetPkg = this.loadPackageJson(
+			path.join(process.cwd(), 'package.json'),
+		)
 	}
 
-	const targetPkgPath = path.join(process.cwd(), 'package.json')
-	if (fs.existsSync(targetPkgPath)) {
-		targetPkg = require(targetPkgPath)
-	} else {
-		throw new Error('Arquivo package.json de destino não encontrado')
+	private loadPackageJson(filePath: string): IPackageJson {
+		if (fs.existsSync(filePath)) {
+			return require(filePath)
+		}
+
+		throw new Error(`package.json file not found at ${filePath}`)
 	}
-} catch (err) {
-	console.error(err)
-	process.exit(1)
+
+	public savePackage(packageData: IPackageJson): void {
+		const targetPkgPath = path.join(process.cwd(), 'package.json')
+		fs.writeFileSync(targetPkgPath, JSON.stringify(packageData, null, 2))
+	}
+
+	public addDependenciesToPackage(
+		dependencies: IDependencies,
+		devDependencies: IDependencies,
+	): void {
+		this.targetPkg.dependencies = {
+			...this.targetPkg.dependencies,
+			...dependencies,
+		}
+		this.targetPkg.devDependencies = {
+			...this.targetPkg.devDependencies,
+			...devDependencies,
+		}
+		this.savePackage(this.targetPkg)
+	}
+
+	public getPackage(): IPackageJson {
+		return this.pkg
+	}
+
+	public getTargetPackage(): IPackageJson {
+		return this.targetPkg
+	}
 }
 
-export { pkg, targetPkg }
+const packageHandler = new Package()
+
+export { packageHandler }
