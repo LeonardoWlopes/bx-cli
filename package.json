@@ -5,10 +5,15 @@
 	"main": "./bin/index.js",
 	"preferGlobal": true,
 	"bin": {
-		"bx-cli": "./bin/index.js",
-		"bx-cli-teste": "./bin/index.js"
+		"bx-cli": "bin/index.js",
+		"bx-cli-teste": "bin/index.js"
 	},
-	"keywords": ["cli", "bx-cli", "buildbox", "bun"],
+	"keywords": [
+		"cli",
+		"bx-cli",
+		"buildbox",
+		"bun"
+	],
 	"author": "@leonardowlopes",
 	"license": "ISC",
 	"type": "module",
@@ -32,6 +37,6 @@
 		"typescript": "^5.3.3"
 	},
 	"repository": {
-		"url": "https://github.com/LeonardoWlopes/bx-cli"
+		"url": "git+https://github.com/LeonardoWlopes/bx-cli.git"
 	}
 }
