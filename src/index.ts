@@ -1,8 +1,9 @@
+#!/usr/bin/env node
 import { EServices } from '@/enum/services'
+import { SERVICE_LABEL } from '@/utils/labels'
+import { SERVICE_MAPPER } from '@/utils/mappers'
 import chalk from 'chalk'
 import inquirer from 'inquirer'
-import { SERVICE_LABEL } from './src/utils/labels'
-import { SERVICE_MAPPER } from './src/utils/mappers'
 
 console.clear()
 

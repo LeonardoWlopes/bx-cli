@@ -1,6 +1,5 @@
 import { EConfigType } from '@/enum/services'
-import type { IConfigurationRequest } from '@/interfaces/config'
-import { CONFIG_FILE_NAME_MAPPER } from '@/utils/mappers'
+import { FUNCTION_MAPPER } from '@/utils/mappers'
 import inquirer from 'inquirer'
 
 export async function configurationService() {
@@ -18,13 +17,5 @@ export async function configurationService() {
 		},
 	])
 
-	const response = await fetch(
-		'https://api.github.com/gists/9119f15937d5ee8abae7414c853e6629',
-	)
-
-	const data = (await response.json()) as IConfigurationRequest
-
-	const configFile = data.files[CONFIG_FILE_NAME_MAPPER[type]]
-
-	console.log(configFile)
+	FUNCTION_MAPPER[type]()
 }

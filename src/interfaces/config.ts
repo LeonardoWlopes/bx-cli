@@ -33,5 +33,5 @@ export interface IFileContent {
 	dependencies: Record<string, string>
 	devDependencies: Record<string, string>
 	fileName: string
-	content: unknown
+	content: string
 }
