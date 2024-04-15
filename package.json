@@ -1,36 +1,29 @@
 {
 	"name": "@leonardowlopes/bx-cli",
-	"version": "2.0.0",
+	"version": "2.1.0",
 	"description": "A CLI tool used to configure projects for the Buildbox company.",
 	"main": "./bin/index.js",
 	"preferGlobal": true,
 	"bin": {
 		"bx-cli": "bin/index.js",
-		"bx-cli-teste": "bin/index.js"
+		"bx": "bin/index.js"
 	},
-	"keywords": [
-		"cli",
-		"bx-cli",
-		"buildbox",
-		"bun"
-	],
+	"keywords": ["cli", "bx-cli", "buildbox"],
 	"author": "@leonardowlopes",
 	"license": "ISC",
-	"type": "module",
 	"scripts": {
-		"build": "bun build ./src/index.ts --outdir ./bin --target=node",
-		"dev": "bun run build --watch",
+		"build": "tsc",
+		"dev": "tsc -w",
 		"lint": "biome check . --apply",
 		"check": "knip"
 	},
 	"dependencies": {
 		"chalk": "^4.1.2",
-		"inquirer": "^8.2.6",
-		"ora": "^8.0.1"
+		"commonjs-ora": "^1.0.2",
+		"inquirer": "^8.2.6"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.6.4",
-		"@types/bun": "^1.0.12",
 		"@types/inquirer": "^9.0.7",
 		"@types/node": "^20.11.19",
 		"knip": "^5.9.4",

@@ -1,6 +1,6 @@
 import fs from 'node:fs'
 import path from 'node:path'
-import type { IDependencies, IPackageJson } from '@/interfaces/package'
+import type { IDependencies, IPackageJson } from '../interfaces/package'
 
 class Package {
 	private pkg: IPackageJson
@@ -10,6 +10,7 @@ class Package {
 		this.pkg = this.loadPackageJson(
 			path.join(__dirname, '../../package.json'),
 		)
+
 		this.targetPkg = this.loadPackageJson(
 			path.join(process.cwd(), 'package.json'),
 		)
