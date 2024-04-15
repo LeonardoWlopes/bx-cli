@@ -34,6 +34,7 @@ execute a cli pelo terminal usando o comando ```bx-cli```
 - [ ] adicionar flags na execução da CLI
 - [ ] criar arquivo .nvmrc
 - [ ] adicionar ts paths
+- [ ] adicionar loaders com [ora](https://www.npmjs.com/package/ora)
 
 ## Autores
 
