@@ -1,5 +1,5 @@
-import chalk from 'chalk'
 import fs from 'node:fs'
+import chalk from 'chalk'
 
 export function createFile(fileName: string, content: string | object) {
 	const data =

@@ -27,6 +27,11 @@ class Package {
 		devDependencies,
 		scripts,
 	}: IAddToPackage): void {
+		this.targetPkg.scripts = {
+			...this.targetPkg.scripts,
+			...scripts,
+		}
+
 		this.targetPkg.dependencies = {
 			...this.targetPkg.dependencies,
 			...dependencies,
@@ -35,11 +40,6 @@ class Package {
 		this.targetPkg.devDependencies = {
 			...this.targetPkg.devDependencies,
 			...devDependencies,
-		}
-
-		this.targetPkg.scripts = {
-			...this.targetPkg.scripts,
-			...scripts,
 		}
 
 		this.save(this.targetPkg)
