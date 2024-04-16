@@ -1,3 +1,9 @@
 export type IPackageJson = typeof import('../../package.json')
 
-export type IDependencies = { [key: string]: string }
+type IPackageParam = { [key: string]: string }
+
+export interface IAddToPackage {
+	dependencies?: IPackageParam
+	devDependencies?: IPackageParam
+	scripts?: IPackageParam
+}
