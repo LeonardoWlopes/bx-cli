@@ -47,9 +47,9 @@ export async function configurationService() {
 	for (const fileName of fileNames) {
 		try {
 			await setupRepositoryFile(fileName)
-			console.log(`Successfully setup ${chalk.blue(fileName)}`)
 		} catch (error) {
 			const err = error as Error
+
 			console.error(chalk.red(err.message))
 		}
 	}

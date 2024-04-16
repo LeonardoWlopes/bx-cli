@@ -47,14 +47,14 @@ class Command {
 
 	public async install() {
 		const command = await this.getCommand()
-		console.log(`instalando dependências usando ${chalk.blue(command)} ...`)
+		console.log(`Installing dependencies using ${chalk.blue(command)} ...`)
 
 		try {
 			await this.exec(`${command} install`)
-			console.log(`Instalação concluída com ${chalk.green('sucesso')}`)
+			console.log(`Installation completed ${chalk.green('successfully')}`)
 		} catch (error) {
 			const err = error as Error
-			console.log(`A instalação falhou com erro: ${err.message}`)
+			console.log(`Installation failed with error: ${err.message}`)
 		}
 	}
 

@@ -42,6 +42,7 @@ execute a cli pelo terminal usando o comando ```bx-cli```
 - [ ] adicionar ts paths
 - [ ] adicionar loaders com [ora](https://www.npmjs.com/package/ora)
 - [ ] gerar TS Paths
+- [ ] adicionar mais de um arquivo por repositório
 
 ## Autores
 
