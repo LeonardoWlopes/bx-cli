@@ -46,4 +46,6 @@ execute a cli pelo terminal usando o comando ```bx-cli```
 
 ## Autores
 
-[![LeonardoWlopes](https://github.com/LeonardoWlopes.png)](https://github.com/LeonardoWlopes)
+<a href="https://github.com/LeonardoWlopes">
+ <img src="https://github.com/LeonardoWlopes.png" alt="LeonardoWlopes" width="100">
+</a>

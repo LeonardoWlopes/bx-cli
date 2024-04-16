@@ -2,5 +2,17 @@
 	"[typescript]": {
 		"editor.defaultFormatter": "biomejs.biome"
 	},
-	"cSpell.words": ["buildbox", "Buildbox"]
+	"cSpell.words": [
+		"buildbox",
+		"Buildbox"
+	],
+	"markdownlint.config": {
+		"default": true,
+		"MD033": {
+			"allowed_elements": [
+				"img",
+				"a"
+			]
+		}
+	}
 }
