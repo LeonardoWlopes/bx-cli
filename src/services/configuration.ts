@@ -3,6 +3,7 @@ import { EFunction } from '../enum/functions'
 import { ERepositoryFileName } from '../enum/repository'
 import { setupRepositoryFile } from '../functions/setup-repository-file'
 import { command } from '../utils/commands'
+import { fetchFilesRepository } from '../utils/http'
 import { FUNCTIONS_MAPPER } from '../utils/mappers'
 
 export async function configurationService() {
@@ -49,6 +50,8 @@ export async function configurationService() {
 
 	console.log('')
 
+	const filesRepository = await fetchFilesRepository()
+
 	const repository = configFiles.filter((value) =>
 		Object.values(ERepositoryFileName).includes(
 			value as ERepositoryFileName,
@@ -68,7 +71,7 @@ export async function configurationService() {
 	)
 
 	for (const fileName of fileNames) {
-		await setupRepositoryFile(fileName)
+		await setupRepositoryFile(fileName, filesRepository)
 	}
 
 	console.log('')

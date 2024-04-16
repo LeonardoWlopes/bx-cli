@@ -35,12 +35,12 @@ execute a cli pelo terminal usando o comando ```bx-cli```
 
 - [ ] implementar versões diferentes das configurações para stacks diferente (Node, React, Next)
 - [ ] adicionar flags na execução da CLI
-- [ ] criar arquivo .nvmrc
+- [x] criar arquivo .nvmrc
 - [ ] criar estrutura de pastas recomendada para projetos
 - [ ] adicionar extensões recomendadas em ```.vscode/extensions.json```
 - [ ] adicionar configurações recomendadas em ```.vscode/settings.json```
 - [ ] adicionar ts paths
-- [ ] adicionar loaders com [ora](https://www.npmjs.com/package/ora)
+- [x] adicionar loaders com [ora](https://www.npmjs.com/package/ora)
 - [ ] gerar TS Paths
 - [ ] adicionar mais de um arquivo por repositório
 
