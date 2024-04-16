@@ -1,13 +1,15 @@
-import chalk from 'chalk'
 import inquirer from 'inquirer'
+import { EFunction } from '../enum/functions'
 import { ERepositoryFileName } from '../enum/repository'
 import { setupRepositoryFile } from '../functions/setup-repository-file'
 import { command } from '../utils/commands'
+import { fetchFilesRepository } from '../utils/http'
+import { FUNCTIONS_MAPPER } from '../utils/mappers'
 
 export async function configurationService() {
 	const { type, configFiles } = await inquirer.prompt<{
 		type: ERepositoryFileName | ERepositoryFileName[]
-		configFiles: ERepositoryFileName[]
+		configFiles: (ERepositoryFileName | EFunction)[]
 	}>([
 		{
 			type: 'list',
@@ -35,23 +37,41 @@ export async function configurationService() {
 				{
 					name: '.editorconfig',
 					value: ERepositoryFileName.EDITOR_CONFIG,
+					checked: true,
+				},
+				{
+					name: '.nvmrc',
+					value: EFunction.GENERATE_NVMRC,
+					checked: true,
 				},
 			],
 		},
 	])
 
-	const fileNames = [...configFiles, ...(Array.isArray(type) ? type : [type])]
-
 	console.log('')
 
+	const filesRepository = await fetchFilesRepository()
+
+	const repository = configFiles.filter((value) =>
+		Object.values(ERepositoryFileName).includes(
+			value as ERepositoryFileName,
+		),
+	) as ERepositoryFileName[]
+
+	const functions = configFiles.filter((value) =>
+		Object.values(EFunction).includes(value as EFunction),
+	) as EFunction[]
+
+	for (const func of functions) {
+		await FUNCTIONS_MAPPER[func]()
+	}
+
+	const fileNames = [repository, type].flatMap((item) =>
+		Array.isArray(item) ? item : [item],
+	)
+
 	for (const fileName of fileNames) {
-		try {
-			await setupRepositoryFile(fileName)
-			console.log(`Successfully setup ${chalk.blue(fileName)}`)
-		} catch (error) {
-			const err = error as Error
-			console.error(chalk.red(err.message))
-		}
+		await setupRepositoryFile(fileName, filesRepository)
 	}
 
 	console.log('')

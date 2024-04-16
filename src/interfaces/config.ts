@@ -32,8 +32,9 @@ interface IFile {
 }
 
 export interface IFileContent {
-	dependencies: Record<string, string>
-	devDependencies: Record<string, string>
+	dependencies?: Record<string, string>
+	devDependencies?: Record<string, string>
+	scripts?: Record<string, string>
 	fileName: string
 	content: string
 }

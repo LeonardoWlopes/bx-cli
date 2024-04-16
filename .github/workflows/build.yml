@@ -1,17 +1,13 @@
-name: Publish Package to npm
+name: Build package
 
 on:
   push:
-    branches: [main]
+    branches-ignore: [main]
   workflow_dispatch:
 
 jobs:
-  publish-npm:
+  build:
     runs-on: ubuntu-latest
-    
-    permissions:
-      contents: read
-      id-token: write
 
     steps:
       - uses: actions/checkout@v3
@@ -42,9 +38,6 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - run: npm install -g npm
-        
-      - run: pnpm run build
-      - run: npm publish --provenance --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Build package
+        run: pnpm run build
+     

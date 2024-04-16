@@ -1,12 +1,25 @@
+import chalk from 'chalk'
+import ora from 'ora'
 import type { IConfigurationRequest } from '../interfaces/config'
 
 export async function fetchFilesRepository(): Promise<IConfigurationRequest> {
-	const filesResponse = await fetch(
-		'https://api.github.com/gists/9119f15937d5ee8abae7414c853e6629',
-	)
+	const spinner = ora('Loading repository files...').start()
 
-	const filesRepository =
-		(await filesResponse.json()) as IConfigurationRequest
+	try {
+		const filesResponse = await fetch(
+			'https://api.github.com/gists/9119f15937d5ee8abae7414c853e6629',
+		)
 
-	return filesRepository
+		const filesRepository =
+			(await filesResponse.json()) as IConfigurationRequest
+
+		spinner.succeed(
+			`Repository files loaded ${chalk.green('successfully')}\n`,
+		)
+
+		return filesRepository
+	} catch (error) {
+		spinner.fail('Failed to load repository files.')
+		throw error
+	}
 }
