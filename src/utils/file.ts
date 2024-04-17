@@ -1,4 +1,5 @@
 import fs from 'node:fs'
+import path from 'node:path'
 import chalk from 'chalk'
 
 export function createFile(fileName: string, content: string | object) {
@@ -21,4 +22,12 @@ export function createFile(fileName: string, content: string | object) {
 	}
 
 	console.log(chalk.green(`✅ Created ${chalk.blue(fileName)}`))
+}
+
+export function readFile(fileName: string): string {
+	return fs.readFileSync(fileName, 'utf-8')
+}
+
+export function fileExists(fileName: string): boolean {
+	return fs.existsSync(path.join(process.cwd(), fileName))
 }

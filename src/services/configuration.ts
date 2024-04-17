@@ -3,11 +3,14 @@ import { EFunction } from '../enum/functions'
 import { ERepositoryFileName } from '../enum/repository'
 import { setupRepositoryFile } from '../functions/setup-repository-file'
 import { command } from '../utils/commands'
+import { fileExists } from '../utils/file'
 import { fetchFilesRepository } from '../utils/http'
 import { FUNCTIONS_MAPPER } from '../utils/mappers'
 import { linterService } from './linter'
 
 export async function configurationService() {
+	const haveTsConfig = fileExists('tsconfig.json')
+
 	const { configFiles, addLinting } = await inquirer.prompt<{
 		configFiles: (ERepositoryFileName | EFunction)[]
 		addLinting: boolean
@@ -18,15 +21,24 @@ export async function configurationService() {
 			message: 'Select the configuration files you want to setup',
 			choices: [
 				{
-					name: '.editorconfig',
+					name: 'create .editorconfig',
 					value: ERepositoryFileName.EDITOR_CONFIG,
 					checked: true,
 				},
 				{
-					name: '.nvmrc',
+					name: 'create .nvmrc',
 					value: EFunction.GENERATE_NVMRC,
 					checked: true,
 				},
+				...(haveTsConfig
+					? [
+							{
+								name: 'create ts paths',
+								value: EFunction.GENERATE_TS_PATHS,
+								checked: true,
+							},
+						]
+					: []),
 			],
 		},
 		{
@@ -36,8 +48,6 @@ export async function configurationService() {
 			default: true,
 		},
 	])
-
-	console.log('')
 
 	const repository = configFiles.filter((value) =>
 		Object.values(ERepositoryFileName).includes(
@@ -54,8 +64,6 @@ export async function configurationService() {
 	}
 
 	if (repository.length > 0) {
-		console.log('')
-
 		const filesRepository = await fetchFilesRepository()
 
 		for (const fileName of repository) {
@@ -64,12 +72,9 @@ export async function configurationService() {
 
 		if (!addLinting) await command.install()
 	}
-	console.log('')
 
 	if (addLinting) {
 		console.clear()
 		linterService()
 	}
-
-	console.log('')
 }

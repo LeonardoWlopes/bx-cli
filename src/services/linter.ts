@@ -28,8 +28,6 @@ export async function linterService() {
 		},
 	])
 
-	console.log('')
-
 	const filesRepository = await fetchFilesRepository()
 
 	const fileNames = Array.isArray(type) ? type : [type]
@@ -37,8 +35,6 @@ export async function linterService() {
 	for (const fileName of fileNames) {
 		await setupRepositoryFile(fileName, filesRepository)
 	}
-
-	console.log('')
 
 	await command.install()
 }

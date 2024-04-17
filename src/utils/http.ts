@@ -14,7 +14,7 @@ export async function fetchFilesRepository(): Promise<IConfigurationRequest> {
 			(await filesResponse.json()) as IConfigurationRequest
 
 		spinner.succeed(
-			`Repository files loaded ${chalk.green('successfully')}\n`,
+			`Repository files loaded ${chalk.green('successfully')}`,
 		)
 
 		return filesRepository

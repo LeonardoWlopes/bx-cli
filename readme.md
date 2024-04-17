@@ -41,7 +41,7 @@ execute a cli pelo terminal usando o comando ```bx-cli```
 - [ ] adicionar configurações recomendadas em ```.vscode/settings.json```
 - [ ] adicionar ts paths
 - [x] adicionar loaders com [ora](https://www.npmjs.com/package/ora)
-- [ ] gerar TS Paths
+- [x] gerar TS Paths
 - [ ] adicionar mais de um arquivo por repositório
 
 ## Autores
