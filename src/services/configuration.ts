@@ -5,30 +5,13 @@ import { setupRepositoryFile } from '../functions/setup-repository-file'
 import { command } from '../utils/commands'
 import { fetchFilesRepository } from '../utils/http'
 import { FUNCTIONS_MAPPER } from '../utils/mappers'
+import { linterService } from './linter'
 
 export async function configurationService() {
-	const { type, configFiles } = await inquirer.prompt<{
-		type: ERepositoryFileName | ERepositoryFileName[]
+	const { configFiles, addLinting } = await inquirer.prompt<{
 		configFiles: (ERepositoryFileName | EFunction)[]
+		addLinting: boolean
 	}>([
-		{
-			type: 'list',
-			name: 'type',
-			message: 'What linting tool do you want to use?',
-			choices: [
-				{
-					name: 'BiomeJS',
-					value: ERepositoryFileName.BIOME,
-				},
-				{
-					name: 'ESLint/Prettier',
-					value: [
-						ERepositoryFileName.ESLINT,
-						ERepositoryFileName.PRETTIER,
-					],
-				},
-			],
-		},
 		{
 			type: 'checkbox',
 			name: 'configFiles',
@@ -46,11 +29,15 @@ export async function configurationService() {
 				},
 			],
 		},
+		{
+			type: 'confirm',
+			name: 'addLinting',
+			message: 'Do you want to add linting configuration?',
+			default: true,
+		},
 	])
 
 	console.log('')
-
-	const filesRepository = await fetchFilesRepository()
 
 	const repository = configFiles.filter((value) =>
 		Object.values(ERepositoryFileName).includes(
@@ -66,15 +53,23 @@ export async function configurationService() {
 		await FUNCTIONS_MAPPER[func]()
 	}
 
-	const fileNames = [repository, type].flatMap((item) =>
-		Array.isArray(item) ? item : [item],
-	)
+	if (repository.length > 0) {
+		console.log('')
 
-	for (const fileName of fileNames) {
-		await setupRepositoryFile(fileName, filesRepository)
+		const filesRepository = await fetchFilesRepository()
+
+		for (const fileName of repository) {
+			await setupRepositoryFile(fileName, filesRepository)
+		}
+
+		if (!addLinting) await command.install()
+	}
+	console.log('')
+
+	if (addLinting) {
+		console.clear()
+		linterService()
 	}
 
 	console.log('')
-
-	await command.install()
 }
